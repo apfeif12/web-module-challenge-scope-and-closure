@@ -51,6 +51,10 @@ let count = 0;
 function counter2() {
   return count++;
 }
+// counter1 uses closure
+// counter1, because the entire function is wrapped in an enclosure
+// counter2 would be used if you want global access to "count". counter1 would be used if you needed to add more functions or callback to that function
+
 
 
 /* Task 2: inning() 
@@ -61,10 +65,8 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  return Math.floor(Math.random() * Math.floor(3));
 }
 
 /* Task 3: finalScore()
@@ -79,21 +81,42 @@ For example: invoking finalScore(inning, 9) might return this object:
   "Away": 5
 }
 */ 
+function finalScore(inningCB, amtOfInnings){
+  let homeScore = 0
+  let awayScore = 0
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+  for(let i = 0; i < 9; i++){
+    const currentScore = inningCB(amtOfInnings)
+    homeScore = homeScore += currentScore
+    awayScore = awayScore += currentScore
+  }
+  return {
+    Home: inning(9),
+    Away: inning(9)
+  }
 }
+console.log(finalScore(inning, 9))
+
 
 /* Task 4: 
 // create a function called getInningScore 
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning) {
+  return {
+    Home: inning(),
+    Away: inning()
+  }
 }
+
+
+
+
+
+
+
+
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
   1. Receive a callback function, that you create, called `getInningScore`
@@ -138,8 +161,20 @@ Use the scoreboard function below to do the following:
   */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inningCB, numberOfinnings) {
+//    const ScBd = [];
+//    let homeScore = 0;
+//    let awayScore = 0;
+
+//    for(let i = 1;i <= numberOfinnings; i++){
+//     const currentScore = inningCB(numberOfinnings)
+//     homeScore = homeScore + currentScore
+//     awayScore = awayScore + currentScore
+
+//     if{homeScore == awayScore
+
+//     }
+//    }
 }
 
 
